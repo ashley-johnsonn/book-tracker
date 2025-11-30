@@ -1,2 +1,31 @@
-<h1>ReadBooks#new</h1>
-<p>Find me in app/views/read_books/new.html.erb</p>
+<h1>Add a New Book</h1>
+
+<%= form_with model: @read_book do |form|%>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+    </div>
+    <div>
+        <%= form.label :date_published %>
+        <%= form.date_field :date_published %>
+    </div>
+    <div>
+        <%= form.label :date_finished %>
+        <%= form.date_field :date_finished %>
+    </div>
+    <div>
+        <%= form.label :rating %>
+        <%= form.number_field :rating %>
+    </div>
+    <div>
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+    </div>
+
+    <%= form.submit "Add Book" %>
+
+<% end %>
