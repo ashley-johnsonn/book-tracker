@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "book_search/search"
   
   resources :read_books
   

@@ -1,0 +1,23 @@
+<h1>Search for a Book</h1>
+
+<%= form_with url: book_search_search_path, method: :get, data: { turbo: false } do |form| %>
+  <%= form.label :query, "Search by title or author:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @books.any? %>
+    <h2>Results:</h2>
+    <% @books.each do |book| %>
+        <div>
+            <% info = book["volumeInfo"] %>
+            <p>Title: <%= info["title"] %></p>
+            <p>Author: <%= info["authors"]&.join(", ") || "Unknown" %></p>
+            <p>Description: <%= info["description"]&.truncate(200) || "No description" %></p>
+            <p>Date Published: <%= info["publishedDate"] || "Unknown" %></p>       
+            <br></br>
+        </div>
+    <% end %>
+<% elsif params[:query].present? %>
+  <p>No books found</p>
+<% end %>
