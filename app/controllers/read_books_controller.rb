@@ -19,6 +19,7 @@ class ReadBooksController < ApplicationController
       redirect_to read_books_path
     else 
       # render the form again on failure
+      render :new
     end
   end
 end
