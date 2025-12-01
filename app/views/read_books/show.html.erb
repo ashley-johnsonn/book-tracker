@@ -1,2 +1,8 @@
-<h1>ReadBooks#show</h1>
-<p>Find me in app/views/read_books/show.html.erb</p>
+<h1><%=@read_book.title%></h1>
+<div>
+    <p>Author: <%=@read_book.author%></p>
+    <p>Description: <%=@read_book.description%></p>
+    <p>Date Published: <%=@read_book.date_published%></p>
+    <p>Date Read:<%=@read_book.date_finished%></p>
+    <p>Rating: <%=@read_book.rating%></p>
+</div>
