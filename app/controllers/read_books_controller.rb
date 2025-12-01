@@ -12,6 +12,20 @@ class ReadBooksController < ApplicationController
     @read_book = ReadBook.new
   end
 
+  def edit
+    @read_book = ReadBook.find(params[:id])
+    puts "@read_book = #{@read_book.inspect}"
+  end
+
+  def update
+    @read_book = ReadBook.find(params[:id])
+    if @read_book.update(read_book_params)
+      redirect_to read_book_path(@read_book)
+    else
+      render :edit
+    end
+  end
+
   def create
     @read_book = ReadBook.new(read_book_params)
     if @read_book.save
@@ -22,6 +36,13 @@ class ReadBooksController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    @read_book = ReadBook.find(params[:id])
+    @read_book.destroy
+    redirect_to read_books_path
+  end
+  
 end
 
 private

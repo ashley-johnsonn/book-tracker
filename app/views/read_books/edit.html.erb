@@ -1,0 +1,44 @@
+<h1>Edit <%= @read_book.title %></h1>
+
+<% if @read_book.errors.any? %>
+  <div>
+    <h2><%= @read_book.errors.count %> error(s) prevented this book from being saved:</h2>
+    <ul>
+      <% @read_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @read_book, data: { turbo: false } do |form|%>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :author %>
+        <%= form.text_field :author %>
+    </div>
+    <div>
+        <%= form.label :date_published %>
+        <%= form.date_field :date_published %>
+    </div>
+    <div>
+        <%= form.label :date_finished %>
+        <%= form.date_field :date_finished %>
+    </div>
+    <div>
+        <%= form.label :rating %>
+        <%= form.number_field :rating %>
+    </div>
+    <div>
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+    </div>
+
+    <%= form.submit "Update Book" %>
+
+<% end %>
+
+<p><%= link_to "Cancel", read_books_path %></p>

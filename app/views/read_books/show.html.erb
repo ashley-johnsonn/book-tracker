@@ -6,5 +6,6 @@
     <p>Date Read:<%=@read_book.date_finished%></p>
     <p>Rating: <%=@read_book.rating%></p>
 </div>
-
-<p><%= link_to "Back to all books", read_books_path %></p>
+<p><%= link_to "Edit Book", edit_read_book_path(@read_book) %></p>
+<p><%= link_to "Back to All Books", read_books_path %></p>
+<%= link_to "Delete Book", read_book_path(@read_book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
