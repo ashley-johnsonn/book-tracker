@@ -14,7 +14,14 @@
             <p>Title: <%= info["title"] %></p>
             <p>Author: <%= info["authors"]&.join(", ") || "Unknown" %></p>
             <p>Description: <%= info["description"]&.truncate(200) || "No description" %></p>
-            <p>Date Published: <%= info["publishedDate"] || "Unknown" %></p>       
+            <p>Year Published: <%= info["publishedDate"] || "Unknown" %></p>       
+            
+            <%= link_to "Select this book", new_read_book_path(
+                title: info["title"],
+                author: info["author"]&.join(", "),
+                description: info["description"],
+                year_published: info["publishedDate"]&.split("-")&.first,
+            )%>
             <br></br>
         </div>
     <% end %>

@@ -9,7 +9,12 @@ class ReadBooksController < ApplicationController
 
   # Rails will automatically render app/views/read_books/new.html.erb :)
   def new
-    @read_book = ReadBook.new
+    @read_book = ReadBook.new(
+      title: params[:title],
+      author: params[:author],
+      description: params[:description],
+      year_published: params[:year_published]
+    )
   end
 
   def edit
@@ -42,11 +47,11 @@ class ReadBooksController < ApplicationController
     @read_book.destroy
     redirect_to read_books_path
   end
-  
+
 end
 
 private
 
 def read_book_params
-  params.require(:read_book).permit(:title, :author, :date_published, :description, :rating, :date_finished)
+  params.require(:read_book).permit(:title, :author, :year_published, :description, :rating, :date_finished)
 end
