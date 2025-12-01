@@ -18,7 +18,7 @@
             
             <%= link_to "Select this book", new_read_book_path(
                 title: info["title"],
-                author: info["author"]&.join(", "),
+                author: info["authors"]&.join(", "),
                 description: info["description"],
                 year_published: info["publishedDate"]&.split("-")&.first,
             )%>
