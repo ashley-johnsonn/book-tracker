@@ -1,34 +1,53 @@
-<h1>Search for a Book</h1>
-
-<%= form_with url: book_search_search_path, method: :get, data: { turbo: false } do |form| %>
-  <%= form.label :query, "Search by title or author:" %>
-  <%= form.text_field :query %>
-  <%= form.submit "Search" %>
-<% end %>
-
-<% if @books.any? %>
-    <h2>Results:</h2>
+<div class="max-w-4xl mx-auto font-serif py-8 px-4">
+  <h1 class="text-4xl font-bold text-gray-800 mb-4">Search for a Book</h1>
+  <p class="text-gray-600 mb-6">Search the Google Books catalog to quickly add books to your reading list.</p>
+  <%= form_with url: book_search_search_path, method: :get, data: { turbo: false }, html: {class: "flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"} do |form| %>
+    <div class="flex justify-between gap-5 items-end mb-4">
+  <div class="flex-1">
+    <%= form.label :query, "Search by title or author:", 
+      class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :query, 
+      class: "w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+      placeholder: "e.g., The Hobbit or J.R.R Tolkien" %>
+  </div>
+  <%= form.submit "Search", 
+    class: "bg-[#A3A695] hover:bg-[#12240F] text-white font-semibold py-2 px-6 rounded-lg transition h-fit" %>
+</div>
+  <% end %>
+  <% if @books.any? %>
+    <h2 class="text-2xl font-bold text-gray-800 mb-4" >Search Results:</h2>
     <% @books.each do |book| %>
-        
-        <div>
-            <% info = book["volumeInfo"] %>
-             <p>Image Available: <%= info["imageLinks"].present? ? "Yes" : "No" %></p>
-            </p>
-            <p>Title: <%= info["title"] %></p>
-            <p>Author: <%= info["authors"]&.join(", ") || "Unknown" %></p>
-            <p>Description: <%= info["description"]&.truncate(200) || "No description" %></p>
-            <p>Year Published: <%= info["publishedDate"] || "Unknown" %></p>       
-            
-            <%= link_to "Select this book", new_read_book_path(
-                title: info["title"],
-                author: info["authors"]&.join(", "),
-                description: info["description"],
-                year_published: info["publishedDate"]&.split("-")&.first,
-                cover_image_url: info.dig("imageLinks", "thumbnail")
-            )%>
-            <br></br>
+      <div class="mb-5 bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition flex gap-4">
+        <% info = book["volumeInfo"] %>
+        <!-- Book Cover -->
+        <% if info["imageLinks"].present? %>
+          <%= image_tag info["imageLinks"]["thumbnail"], 
+                class: "w-24 h-32 object-cover rounded", 
+                alt: info["title"] %>
+        <% else %>
+          <div class="w-24 h-32 bg-gray-200 rounded flex items-center justify-center text-gray-400">
+            No Image
+          </div>
+        <% end %>
+        <%# Book info %>
+        <div class="flex-1">
+          <h2 class="text-xl font-semibold mb-2"><%= info["title"] %></h2>
+          <p class="text-gray-600 mb-2" ><%= info["authors"]&.join(", ") || "Unknown" %>, <%= info["publishedDate"] || "Unknown" %></p>
+          <p class="text-gray-600 mb-2" ><%= info["description"]&.truncate(350) || "No description" %></p>
+          <%= link_to "Select this book", new_read_book_path(
+                  title: info["title"],
+                  author: info["authors"]&.join(", "),
+                  description: info["description"],
+                  year_published: info["publishedDate"]&.split("-")&.first,
+                  cover_image_url: info.dig("imageLinks", "thumbnail")
+              ), class:"text-center w-45 bg-[#A3A695] hover:bg-[#12240F] text-white font-semibold py-2 px-6 rounded-lg inline-block transition" %>
         </div>
-    <% end %>
+    </div>
+  <% end %>
 <% elsif params[:query].present? %>
-  <p>No books found</p>
+    <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded">
+    <p>No books found for "<%= params[:query] %>". Try a different search term!</p>
+  </div>
 <% end %>
+</div>
+

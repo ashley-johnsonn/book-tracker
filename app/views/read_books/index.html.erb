@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto font-serif">
+<div class="max-w-4xl mx-auto font-serif py-5">
 
   <!-- Header -->
   <div class="mb-8">
@@ -8,9 +8,10 @@
   </div>
 
   <!-- Books Grid/List -->
-  <div class="space-y-4">
-    <% @books.each do |book| %>
-      <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition flex gap-4">
+<div class="space-y-4">
+  <% @books.each.reverse_each do |book| %>
+    <%= link_to read_book_path(book), class: "block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition" do %>
+      <div class="flex gap-4">
         <!-- Book Cover -->
         <% if book.cover_image_url.present? %>
           <%= image_tag book.cover_image_url, class: "w-24 h-32 object-cover rounded", alt: book.title %>
@@ -22,9 +23,8 @@
         
         <!-- Book Info -->
         <div class="flex-1">
-          <h2 class="text-xl font-semibold mb-2">
-            <%= link_to book.title, read_book_path(book), 
-                class: "text-[#12240F] hover:text-[#7E7454]" %>
+          <h2 class="text-xl font-semibold mb-2 text-[#12240F]">
+            <%= book.title %>
           </h2>
           <p class="text-gray-600 mb-2">by <%= book.author %></p>
           <div class="flex gap-4 text-sm text-gray-500">
@@ -34,5 +34,6 @@
         </div>
       </div>
     <% end %>
-  </div>
+  <% end %>
+</div>
 </div>
