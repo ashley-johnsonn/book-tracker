@@ -1,23 +1,36 @@
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto font-serif">
+
   <!-- Header -->
   <div class="mb-8">
     <h1 class="text-4xl font-bold text-gray-800 mb-4">Books I Have Read</h1>
     <%= link_to "Add New Book", new_read_book_path, 
-        class: "bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg inline-block transition" %>
+        class: "bg-[#A3A695] hover:bg-[#12240F] text-white font-semibold py-2 px-6 rounded-lg inline-block transition" %>
   </div>
 
   <!-- Books Grid/List -->
   <div class="space-y-4">
     <% @books.each do |book| %>
-      <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">
-          <%= link_to book.title, read_book_path(book), 
-              class: "text-blue-600 hover:text-blue-800" %>
-        </h2>
-        <p class="text-gray-600 mb-2">by <%= book.author %></p>
-        <div class="flex gap-4 text-sm text-gray-500">
-          <span>Finished: <%= book.date_finished %></span>
-          <span>⭐ <%= book.rating %>/5</span>
+      <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition flex gap-4">
+        <!-- Book Cover -->
+        <% if book.cover_image_url.present? %>
+          <%= image_tag book.cover_image_url, class: "w-24 h-32 object-cover rounded", alt: book.title %>
+        <% else %>
+          <div class="w-24 h-32 bg-gray-200 rounded flex items-center justify-center text-gray-400">
+            No Image
+          </div>
+        <% end %>
+        
+        <!-- Book Info -->
+        <div class="flex-1">
+          <h2 class="text-xl font-semibold mb-2">
+            <%= link_to book.title, read_book_path(book), 
+                class: "text-[#12240F] hover:text-[#7E7454]" %>
+          </h2>
+          <p class="text-gray-600 mb-2">by <%= book.author %></p>
+          <div class="flex gap-4 text-sm text-gray-500">
+            <span>Finished: <%= book.date_finished %></span>
+            <span>⭐ <%= book.rating %>/5</span>
+          </div>
         </div>
       </div>
     <% end %>

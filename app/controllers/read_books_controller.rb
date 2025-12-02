@@ -13,7 +13,8 @@ class ReadBooksController < ApplicationController
       title: params[:title],
       author: params[:author],
       description: params[:description],
-      year_published: params[:year_published]
+      year_published: params[:year_published],
+      cover_image_url: params[:cover_image_url]
     )
   end
 
@@ -53,5 +54,5 @@ end
 private
 
 def read_book_params
-  params.require(:read_book).permit(:title, :author, :year_published, :description, :rating, :date_finished)
+  params.require(:read_book).permit(:title, :author, :year_published, :description, :rating, :date_finished, :cover_image_url)
 end
