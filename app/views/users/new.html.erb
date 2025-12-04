@@ -1,4 +1,51 @@
-<div>
-  <h1 class="font-bold text-4xl">Users#new</h1>
-  <p>Find me in app/views/users/new.html.erb</p>
+<div class="w-1/2 mx-auto font-serif py-8 px-4">
+<h1 class="text-4xl font-bold text-gray-800 mb-4">Sign Up</h1>
+
+<% if @user.errors.any? %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+    <h2 class="font-bold mb-2"><%= @user.errors.count %> error(s) prevented this book from being saved:</h2>
+    <ul class="list-disc list-inside">
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @user, url: signup_path, html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"} do |form|%>
+    <div class="mb-4">
+        <%= form.label :name, 
+            class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+            placeholder: "Name" %>
+    </div>
+    <div class="mb-4">
+        <%= form.label :email, 
+        class: "block text-gray-700 text-sm font-bold mb-2"%>
+        <%= form.text_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+            placeholder: "Email"%>
+    </div>
+    <div class="mb-4">
+        <%= form.label :username, 
+            class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :username, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+            placeholder: "Username" %>
+    </div>
+    <div class="mb-4">
+        <%= form.label :password, 
+            class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+            placeholder: "Password" %>
+    </div>
+    <div class="mb-4">
+        <%= form.label :password_confirmation, 
+            class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",  
+            placeholder: "Password Confirmation" %>
+    </div>
+    <%= form.submit "Sign Up",
+        class: "bg-[#A3A695] hover:bg-[#12240F] text-white font-semibold py-2 px-6 rounded-lg inline-block transition" %>
+<% end %>
+
+
 </div>
