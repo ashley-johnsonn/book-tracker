@@ -1,0 +1,28 @@
+<%= link_to read_book_path(book), class: "block bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition" do %>
+  <div class="flex gap-4">
+    <!-- Book Cover -->
+    <% if book.cover_image_url.present? %>
+      <%= image_tag book.cover_image_url, class: "w-24 h-32 object-cover rounded", alt: book.title %>
+    <% else %>
+      <div class="w-24 h-32 bg-gray-200 rounded flex items-center justify-center text-gray-400">
+        No Image
+      </div>
+    <% end %>
+    
+    <!-- Book Info -->
+    <div class="flex-1">
+      <h2 class="text-xl font-semibold mb-2 text-[#12240F]">
+        <%= book.title %>
+      </h2>
+      <p class="text-gray-600 mb-2">by <%= book.author %></p>
+      <div class="flex gap-4 text-sm text-gray-500">
+        <% if book.date_finished %>
+          <span>Finished: <%= book.date_finished %></span>
+        <% end %>
+        <% if book.rating %>
+          <span>⭐ <%= book.rating %>/5</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

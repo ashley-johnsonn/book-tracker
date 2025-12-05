@@ -54,5 +54,5 @@ end
 private
 
 def read_book_params
-  params.require(:read_book).permit(:title, :author, :year_published, :description, :rating, :date_finished, :cover_image_url)
+  params.require(:read_book).permit(:title, :author, :year_published, :description, :rating, :date_finished, :cover_image_url, :status)
 end

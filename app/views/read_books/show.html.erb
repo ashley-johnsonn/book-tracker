@@ -26,7 +26,9 @@
           <span>📅 Published: <%= @read_book.year_published || "Unknown" %></span>
           <span>✓ Finished: <%= @read_book.date_finished&.strftime("%B %d, %Y") || "Not finished" %></span>
           <span>⭐ Rating: <%= @read_book.rating %>/5</span>
+          <span>🗂️ Status: <%= @read_book.status %></span>
         </div>
+        
         
         <div class="prose">
           <h2 class="text-lg font-semibold text-gray-700 mb-2">Description</h2>
