@@ -3,7 +3,7 @@
 
 <% if @user.errors.any? %>
   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-    <h2 class="font-bold mb-2"><%= @user.errors.count %> error(s) prevented this book from being saved:</h2>
+    <h2 class="font-bold mb-2"><%= @user.errors.count %> error(s) prevented your registration:</h2>
     <ul class="list-disc list-inside">
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>

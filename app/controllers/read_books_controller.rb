@@ -1,4 +1,5 @@
 class ReadBooksController < ApplicationController
+  before_action :require_login
   def index
     @books = ReadBook.all
   end
@@ -37,7 +38,7 @@ class ReadBooksController < ApplicationController
     if @read_book.save
       # redirect somewhere on success
       redirect_to read_books_path
-    else 
+    else
       # render the form again on failure
       render :new
     end
@@ -48,7 +49,6 @@ class ReadBooksController < ApplicationController
     @read_book.destroy
     redirect_to read_books_path
   end
-
 end
 
 private
