@@ -1,11 +1,11 @@
 class ReadBooksController < ApplicationController
   before_action :require_login
   def index
-    @books = ReadBook.all
+    @books = current_user.read_books.all
   end
 
   def show
-    @read_book = ReadBook.find(params[:id])
+    @read_book = current_user.read_books.find(params[:id])
   end
 
   # Rails will automatically render app/views/read_books/new.html.erb :)
@@ -20,12 +20,12 @@ class ReadBooksController < ApplicationController
   end
 
   def edit
-    @read_book = ReadBook.find(params[:id])
+    @read_book = current_user.read_books.find(params[:id])
     puts "@read_book = #{@read_book.inspect}"
   end
 
   def update
-    @read_book = ReadBook.find(params[:id])
+    @read_book = current_user.read_books.find(params[:id])
     if @read_book.update(read_book_params)
       redirect_to read_book_path(@read_book)
     else
@@ -34,7 +34,7 @@ class ReadBooksController < ApplicationController
   end
 
   def create
-    @read_book = ReadBook.new(read_book_params)
+    @read_book = current_user.read_books.new(read_book_params)
     if @read_book.save
       # redirect somewhere on success
       redirect_to read_books_path
@@ -45,7 +45,7 @@ class ReadBooksController < ApplicationController
   end
 
   def destroy
-    @read_book = ReadBook.find(params[:id])
+    @read_book = current_user.read_books.find(params[:id])
     @read_book.destroy
     redirect_to read_books_path
   end
