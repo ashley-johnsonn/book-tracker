@@ -2,6 +2,12 @@ class ReadBooksController < ApplicationController
   before_action :require_login
   def index
     @books = current_user.read_books.all
+
+    if params[:search].present?
+      @books = @books.where("title LIKE ? OR author LIKE ?",
+                            "%#{params[:search]}%",
+                            "%#{params[:search]}%")
+    end
   end
 
   def show
