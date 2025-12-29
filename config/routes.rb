@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/recommendations", to: "recommendations#index"
   get "book_search/search"
 
   # Sessions (login/logout)
