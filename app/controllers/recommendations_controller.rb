@@ -14,7 +14,6 @@ class RecommendationsController < ApplicationController
     uri = URI("https://api.anthropic.com/v1/messages")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Post.new(uri)
     request["Content-Type"] = "application/json"

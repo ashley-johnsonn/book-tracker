@@ -1,17 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user: one
   title: MyString
   author: MyString
-  date_published: 2025-12-01
+  year_published: 2025
   description: MyText
   rating: 1
+  status: finished
   date_finished: 2025-12-01
 
 two:
+  user: two
   title: MyString
   author: MyString
-  date_published: 2025-12-01
+  year_published: 2025
   description: MyText
   rating: 1
+  status: finished
   date_finished: 2025-12-01
