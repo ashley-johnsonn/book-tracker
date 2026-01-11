@@ -48,6 +48,13 @@ rails server
 
 Visit `http://localhost:3000`
 
+## 💻 Demo
+
+https://github.com/user-attachments/assets/250b5392-f89a-4c52-b093-5c8d92cba440
+
+AI Book Recommendaions
+<img width="1441" height="726" alt="Screenshot 2026-01-12 at 7 20 03 am" src="https://github.com/user-attachments/assets/ba5e6475-0b28-407b-83df-f43239c3d4a7" />
+
 ## 🎨 Features Breakdown
 
 ### The Basics
